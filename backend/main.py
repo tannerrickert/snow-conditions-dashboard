@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from scrapers.brighton import get_brighton_data
 
 app = FastAPI()
 
@@ -18,8 +19,5 @@ def read_root():
 @app.get("/api/resorts")
 def get_resorts():
     return {
-    "resorts": [
-        {"name": "Alta", "snowfall_24h": 12},
-        {"name": "Snowbird", "snowfall_24h": 8}
-    ]
-}
+        "resorts": [get_brighton_data()]
+    }
